@@ -17,7 +17,7 @@ let isAuthorized = false;
 let authToken = null;
 
 // API base URL (change this to your backend URL when deployed)
-const API_BASE_URL = 'https://dsa-portal-backend.onrender.com';
+const API_BASE_URL = 'https://cs24-dsa-portal.vercel.app';
 
 // Handle login with backend
 async function handleLogin(email, password) {
