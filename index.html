@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA-CSF24 MOR + AFT PORTAL</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>TA Login</h2>
+            <p class="login-subtitle">Sign in to upload and manage files</p>
+            
+            <div class="login-simple">
+                <form id="emailLoginForm">
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                    <input type="password" id="loginPassword" placeholder="Enter password" required>
+                    <button type="submit">Sign In</button>
+                </form>
+            </div>
+            
+            <p id="loginError" class="error-message"></p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <div class="logo">
+                <img src="as.jfif" alt="PUCIT Logo" class="logo-image">
+            </div>
+        </div>
+        <h1 class="portal-title">DSA-CSF24<br>MOR + AFT<br>PORTAL</h1>
+        <div class="auth-buttons">
+            <button id="loginBtn" class="btn-login">
+                <i class="fas fa-sign-in-alt"></i> TA Sign In
+            </button>
+            <button id="logoutBtn" class="btn-logout" style="display: none;">
+                <i class="fas fa-sign-out-alt"></i> <span id="userDisplay"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Morning Section -->
+        <section class="section main-section">
+            <h2 class="section-title">Morning</h2>
+            <div class="section-content">
+                <!-- Labs Subsection -->
+                <div class="subsection">
+                    <h3 class="subsection-title">Labs</h3>
+                    <div class="subsection-content">
+                        <div class="sub-subsection">
+                            <h4 class="sub-subsection-title">Lab</h4>
+                            <div class="file-grid" id="morningLabFiles">
+                                <!-- Morning lab files will be dynamically added here -->
+                            </div>
+                            <div id="morningLabUploadArea" class="upload-area" style="display: none;">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <input type="file" id="morningLabFileInput" accept=".pdf,.docx" multiple>
+                                <button onclick="uploadFile('morningLab')" class="upload-btn">
+                                    <i class="fas fa-upload"></i> Upload Lab
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="sub-subsection">
+                            <h4 class="sub-subsection-title">Lab Solution</h4>
+                            <div class="file-grid" id="morningLabSolutionFiles">
+                                <!-- Morning lab solution files will be dynamically added here -->
+                            </div>
+                            <div id="morningLabSolutionUploadArea" class="upload-area" style="display: none;">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <input type="file" id="morningLabSolutionFileInput" accept=".pdf,.docx" multiple>
+                                <button onclick="uploadFile('morningLabSolution')" class="upload-btn">
+                                    <i class="fas fa-upload"></i> Upload Lab Solution
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quiz Subsection -->
+                <div class="subsection">
+                    <h3 class="subsection-title">Quiz</h3>
+                    <div class="subsection-content">
+                        <div class="sub-subsection">
+                            <h4 class="sub-subsection-title">Quiz</h4>
+                            <div class="file-grid" id="morningQuizFiles">
+                                <!-- Morning quiz files will be dynamically added here -->
+                            </div>
+                            <div id="morningQuizUploadArea" class="upload-area" style="display: none;">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <input type="file" id="morningQuizFileInput" accept=".pdf,.docx" multiple>
+                                <button onclick="uploadFile('morningQuiz')" class="upload-btn">
+                                    <i class="fas fa-upload"></i> Upload Quiz
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="sub-subsection">
+                            <h4 class="sub-subsection-title">Quiz Solution</h4>
+                            <div class="file-grid" id="morningQuizSolutionFiles">
+                                <!-- Morning quiz solution files will be dynamically added here -->
+                            </div>
+                            <div id="morningQuizSolutionUploadArea" class="upload-area" style="display: none;">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <input type="file" id="morningQuizSolutionFileInput" accept=".pdf,.docx" multiple>
+                                <button onclick="uploadFile('morningQuizSolution')" class="upload-btn">
+                                    <i class="fas fa-upload"></i> Upload Quiz Solution
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Afternoon Section -->
+        <section class="section main-section">
+            <h2 class="section-title">Afternoon</h2>
+            <div class="section-content">
+                <!-- Labs Subsection -->
+                <div class="subsection">
+                    <h3 class="subsection-title">Labs</h3>
+                    <div class="subsection-content">
+                        <div class="sub-subsection">
+                            <h4 class="sub-subsection-title">Lab</h4>
+                            <div class="file-grid" id="afternoonLabFiles">
+                                <!-- Afternoon lab files will be dynamically added here -->
+                            </div>
+                            <div id="afternoonLabUploadArea" class="upload-area" style="display: none;">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <input type="file" id="afternoonLabFileInput" accept=".pdf,.docx" multiple>
+                                <button onclick="uploadFile('afternoonLab')" class="upload-btn">
+                                    <i class="fas fa-upload"></i> Upload Lab
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="sub-subsection">
+                            <h4 class="sub-subsection-title">Lab Solution</h4>
+                            <div class="file-grid" id="afternoonLabSolutionFiles">
+                                <!-- Afternoon lab solution files will be dynamically added here -->
+                            </div>
+                            <div id="afternoonLabSolutionUploadArea" class="upload-area" style="display: none;">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <input type="file" id="afternoonLabSolutionFileInput" accept=".pdf,.docx" multiple>
+                                <button onclick="uploadFile('afternoonLabSolution')" class="upload-btn">
+                                    <i class="fas fa-upload"></i> Upload Lab Solution
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quiz Subsection -->
+                <div class="subsection">
+                    <h3 class="subsection-title">Quiz</h3>
+                    <div class="subsection-content">
+                        <div class="sub-subsection">
+                            <h4 class="sub-subsection-title">Quiz</h4>
+                            <div class="file-grid" id="afternoonQuizFiles">
+                                <!-- Afternoon quiz files will be dynamically added here -->
+                            </div>
+                            <div id="afternoonQuizUploadArea" class="upload-area" style="display: none;">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <input type="file" id="afternoonQuizFileInput" accept=".pdf,.docx" multiple>
+                                <button onclick="uploadFile('afternoonQuiz')" class="upload-btn">
+                                    <i class="fas fa-upload"></i> Upload Quiz
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="sub-subsection">
+                            <h4 class="sub-subsection-title">Quiz Solution</h4>
+                            <div class="file-grid" id="afternoonQuizSolutionFiles">
+                                <!-- Afternoon quiz solution files will be dynamically added here -->
+                            </div>
+                            <div id="afternoonQuizSolutionUploadArea" class="upload-area" style="display: none;">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                </div>
+                                <input type="file" id="afternoonQuizSolutionFileInput" accept=".pdf,.docx" multiple>
+                                <button onclick="uploadFile('afternoonQuizSolution')" class="upload-btn">
+                                    <i class="fas fa-upload"></i> Upload Quiz Solution
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Marksheet Section -->
+        <section class="section">
+            <h2 class="section-title">Marksheets</h2>
+            <div class="section-content">
+                <div class="marksheet-grid">
+                    <div class="marksheet-card" id="csMorCard">
+                        <div class="marksheet-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>CS-MOR</h3>
+                        <p>View Marksheet</p>
+                        <i class="fas fa-external-link-alt marksheet-arrow"></i>
+                    </div>
+                    <div class="marksheet-card" id="csAftCard">
+                        <div class="marksheet-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>CS-AFT</h3>
+                        <p>View Marksheet</p>
+                        <i class="fas fa-external-link-alt marksheet-arrow"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Get Help Section -->
+        <section class="section">
+            <h2 class="section-title">Get Help</h2>
+            <div class="section-content">
+                <div class="help-card">
+                    <div class="help-item">
+                        <h3><i class="fas fa-chalkboard-teacher"></i> Teacher</h3>
+                        <div class="contact-info">
+                            <span>Zobia Suhail</span>
+                            <div class="contact-links">
+                                <a href="mailto:zobia.suhail@pucit.edu.pk" class="contact-link" title="Email">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="help-item">
+                        <h3><i class="fas fa-user-graduate"></i> Teaching Assistants</h3>
+                        <div class="contact-list">
+                            <div class="contact-info">
+                                <span>Asadullah Ahmad</span>
+                                <div class="contact-links">
+                                    <a href="mailto:bcsf23m020@pucit.edu.pk" class="contact-link" title="Email">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                    <a href="https://wa.me/923346630398" class="contact-link whatsapp" target="_blank" title="WhatsApp">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="contact-info">
+                                <span>Hafiz Abdul Qadir</span>
+                                <div class="contact-links">
+                                    <a href="mailto:bcsf23m002@pucit.edu.pk" class="contact-link" title="Email">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                    <a href="https://wa.me/923234892756" class="contact-link whatsapp" target="_blank" title="WhatsApp">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="contact-info">
+                                <span>Hafiz Own</span>
+                                <div class="contact-links">
+                                    <a href="mailto:bcsf23m018@pucit.edu.pk" class="contact-link" title="Email">
+                                        <i class="fas fa-envelope"></i>
+                                    </a>
+                                    <a href="https://wa.me/923260706350" class="contact-link whatsapp" target="_blank" title="WhatsApp">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            <p>Disclaimer: This portal is not an university's official portal. It is just created to share lab content with class.</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
